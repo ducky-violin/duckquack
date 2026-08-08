@@ -9,6 +9,7 @@ const app = new App({
   socketMode: true
 });
 
+//quack
 app.command("/duckquack-bot", async ({ command, ack, respond }) => {
   const start = Date.now();
   await ack();
@@ -16,11 +17,7 @@ app.command("/duckquack-bot", async ({ command, ack, respond }) => {
   await respond({ text: `quack!\nLatency: ${latency}ms` });
 });
 
-(async () => {
-  await app.start();
-  console.log("bot is running!");
-})();
-
+//crack a joke
 app.command("/duckquack-crackajoke", async ({ ack, respond }) => {
   await ack();
 
@@ -33,6 +30,19 @@ app.command("/duckquack-crackajoke", async ({ ack, respond }) => {
 ${response.data.punchline}`
     });
   } catch (err) {
-    await respond({ text: "Failed to fetch a joke." });
+    await respond({ text: "Didn't come up with a witty response in time, try again!" });
   }
 });
+
+//quack a joke
+app.command("/duckquack-bot", async ({ command, ack, respond }) => {
+  const start = Date.now();
+  await ack();
+  const latency = Date.now() - start;
+  await respond({ text: `quack quack quack! (said something in duck language, presumably a joke)\nLatency: ${latency}ms` });
+});
+
+(async () => {
+  await app.start();
+  console.log("bot is running!");
+})();
