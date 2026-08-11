@@ -12,7 +12,15 @@ const app = new App({
 //quack: duckquack quacks when you run this command
 app.command("/duckquack", async ({ ack, respond }) => {
   await ack();
-  await respond({ text: "quack!" });
+  
+  try {
+    await respond({ text: "quack!" });
+  }
+  
+  catch (err) {
+    await respond({ text: "(Duckquack wasn't paying attention, try again!)" });
+  }
+
 });
 
 //crack a joke: duckquack generates joke from API when you run this command
@@ -35,7 +43,15 @@ ${response.data.punchline}`
 //quack a joke: duckquack quacks when you run this command
 app.command("/duckquack-quackajoke", async ({ ack, respond }) => {
   await ack();
-  await respond({ text: "quack quack quack! (said something in duck language, presumably a joke)" });
+
+    try {
+    await respond({ text: "quack quack quack! (said something in duck language, presumably a joke)" });
+  }
+  
+  catch (err) {
+    await respond({ text: "(Duckquack wasn't paying attention, try again!)" });
+  }
+
 });
 
 (async () => {
