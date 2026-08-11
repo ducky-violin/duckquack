@@ -11,8 +11,8 @@ const app = new App({
 
 //quack: duckquack quacks when you run this command
 app.command("/duckquack", async ({ command, ack, respond }) => {
-  const start = Date.now();
   await ack();
+  const start = Date.now();
   const latency = Date.now() - start;
   await respond({ text: `quack!\nLatency: ${latency}ms` });
 });
@@ -36,8 +36,8 @@ ${response.data.punchline}`
 
 //quack a joke: duckquack quacks when you run this command
 app.command("/duckquack-quackajoke", async ({ command, ack, respond }) => {
-  const start = Date.now();
   await ack();
+  const start = Date.now();
   const latency = Date.now() - start;
   await respond({ text: `quack quack quack! (said something in duck language, presumably a joke)\nLatency: ${latency}ms` });
 });
