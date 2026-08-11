@@ -13,8 +13,16 @@ const app = new App({
 app.command("/duckquack-bot-help", async ({ ack, respond }) => {
   await ack();
   await respond({ 
-    text: "/duckquack-crackajoke\n/duckquack-catfact\n/duckquack-quackajoke" 
+    text: "/duckquack-crackajoke\n/duckquack-catfact\n/duckquack-quack" 
   });
+});
+
+//quacks
+app.command("/duckquack-quack", async ({ command, ack, respond }) => {
+  const start = Date.now();
+  await ack();
+  const latency = Date.now() - start;
+  await respond({ text: `quack!\nLatency: ${latency}ms` });
 });
 
 //crack a joke: duckquack generates joke from API when you run this command
@@ -34,21 +42,6 @@ ${response.data.punchline}`
   }
 });
 
-//crack a joke: duckquack generates joke from API when you run this command + quacks
-app.command("/duckquack-quackajoke", async ({ ack, respond }) => {
-  await ack();
-
-  try {
-    const response = await axios.get("https://official-joke-api.appspot.com/random_joke");
-    await respond({ 
-      text: `quack quack ${response.data.fact} quack quack quack`,
-      response_type: "in_channel"
-    });
-  } catch (err) {
-    await respond({ text: "No joke found." });
-  }
-});
-
 //catfact
 app.command("/duckquack-catfact", async ({ ack, respond }) => {
   await ack();
@@ -56,7 +49,7 @@ app.command("/duckquack-catfact", async ({ ack, respond }) => {
   try {
     const response = await axios.get("https://catfact.ninja");
     await respond({ 
-      text: `A very random cat fact:\n${response.data.fact}`,
+      text: `*quacks a cat fact* translated: \n${response.data.fact}`,
       response_type: "in_channel"
     });
   } catch (err) {
