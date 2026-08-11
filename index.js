@@ -14,11 +14,11 @@ app.command("/duckquack", async ({ ack, respond }) => {
   await ack();
   
   try {
-    await respond({ text: "quack!" });
+    await say({ text: "quack!" });
   }
   
   catch (err) {
-    await respond({ text: "(Duckquack wasn't paying attention, try again!)" });
+    await say({ text: "(Duckquack wasn't paying attention, try again!)" });
   }
 
 });
@@ -45,11 +45,11 @@ app.command("/duckquack-quackajoke", async ({ ack, respond }) => {
   await ack();
 
     try {
-    await respond({ text: "quack quack quack! (said something in duck language, presumably a joke)" });
+    await say({ text: "quack quack quack! (said something in duck language, presumably a joke)" });
   }
   
   catch (err) {
-    await respond({ text: "(Duckquack wasn't paying attention, try again!)" });
+    await say({ text: "(Duckquack wasn't paying attention, try again!)" });
   }
 
 });
