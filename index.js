@@ -10,7 +10,7 @@ const app = new App({
 });
 
 //quack: duckquack quacks when you run this command
-app.command("/duckquack-bot", async ({ command, ack, respond }) => {
+app.command("/duckquack", async ({ command, ack, respond }) => {
   const start = Date.now();
   await ack();
   const latency = Date.now() - start;
