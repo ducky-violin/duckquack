@@ -9,18 +9,15 @@ const app = new App({
   socketMode: true
 });
 
-//quack: duckquack quacks when you run this command
-app.command("/duckquack", async ({ ack, respond }) => {
+//duckquack-help
+app.command("/duckquack-bot-help", async ({ ack, respond }) => {
   await ack();
-  
-  try {
-    await say({ text: "quack!" });
-  }
-  
-  catch (err) {
-    await say({ text: "(Duckquack wasn't paying attention, try again!)" });
-  }
-
+  await respond({
+    text:
+`Available Commands:
+/duckquack-crackajoke
+/duckquack-catfact - Get a cat fact`
+  });
 });
 
 //crack a joke: duckquack generates joke from API when you run this command
@@ -41,17 +38,15 @@ ${response.data.punchline}`
 });
 
 //quack a joke: duckquack quacks when you run this command
-app.command("/duckquack-quackajoke", async ({ ack, respond }) => {
+app.command("/duckquack-catfact", async ({ ack, respond }) => {
   await ack();
 
-    try {
-    await say({ text: "quack quack quack! (said something in duck language, presumably a joke)" });
+  try {
+    const response = await axios.get("https://catfact.ninja/fact");
+    await respond({ text: `A very random cat fact:\n${response.data.fact}` });
+  } catch (err) {
+    await respond({ text: "No cat found." });
   }
-  
-  catch (err) {
-    await say({ text: "(Duckquack wasn't paying attention, try again!)" });
-  }
-
 });
 
 (async () => {
