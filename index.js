@@ -10,11 +10,9 @@ const app = new App({
 });
 
 //quack: duckquack quacks when you run this command
-app.command("/duckquack", async ({ command, ack, respond }) => {
+app.command("/duckquack", async ({ ack, respond }) => {
   await ack();
-  const start = Date.now();
-  const latency = Date.now() - start;
-  await respond({ text: `quack!\nLatency: ${latency}ms` });
+  await respond({ text: "quack!" });
 });
 
 //crack a joke: duckquack generates joke from API when you run this command
@@ -35,11 +33,9 @@ ${response.data.punchline}`
 });
 
 //quack a joke: duckquack quacks when you run this command
-app.command("/duckquack-quackajoke", async ({ command, ack, respond }) => {
+app.command("/duckquack-quackajoke", async ({ ack, respond }) => {
   await ack();
-  const start = Date.now();
-  const latency = Date.now() - start;
-  await respond({ text: `quack quack quack! (said something in duck language, presumably a joke)\nLatency: ${latency}ms` });
+  await respond({ text: "quack quack quack! (said something in duck language, presumably a joke)" });
 });
 
 (async () => {
